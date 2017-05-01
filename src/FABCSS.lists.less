@@ -1,0 +1,126 @@
+/*----------------------------------------------------------------------------*\
+    # Copyright 2017, BuzzingPixel, LLC
+
+    # This program is free software: you can redistribute it and/or modify
+    # it under the terms of the Apache License 2.0.
+    # http://www.apache.org/licenses/LICENSE-2.0
+\*----------------------------------------------------------------------------*/
+
+/**
+ * Variables
+ */
+@listBulletPosition: outside; // inside or outside
+@listColor: false;
+@listLineHeight: false;
+@listMarginBottom: false;
+@listMarginLeft: 20px; // false to disable
+@liMarginBottom: 2px; // false to disable
+@nestedListMarginBottom: 20px;
+@nestedListMarginLeft: 20px;
+@listBulletStyle: disc; // disc, circle, square, etc
+
+@dlMarginBottom: 20px;
+@dtColor: lighten(#000, 35%);
+@dtFont: false;
+@dtFontSize: 20px;
+@dtMarginBottom: 2px;
+@ddColor: lighten(#000, 65%);
+@ddFont: false;
+@ddFontSize: false;
+@ddMarginBottom: 10px;
+
+// List styling
+dl,
+ol,
+ul {
+    list-style-position: @listBulletPosition;
+
+    .listColor () when not (@listColor = false) {
+        color: @listColor;
+    }
+    .listColor();
+
+    .listLineHeight () when not (@listLineHeight = false) {
+        line-height: @listLineHeight;
+    }
+    .listLineHeight();
+
+    .listMarginBottom () when not (@listMarginBottom = false) {
+        margin-bottom: @listMarginBottom;
+    }
+    .listMarginBottom();
+
+    .check () when not (@liMarginBottom = false) {
+        li {
+            margin-bottom: @liMarginBottom;
+        }
+    }
+    .check();
+}
+ol,
+ul {
+    .listMarginLeft () when not (@listMarginLeft = false) {
+        margin-left: @listMarginLeft;
+    }
+    .listMarginLeft();
+    ol,
+    ul {
+        .nestedListMarginBottom () when not (@nestedListMarginBottom = false) {
+            margin-bottom: @nestedListMarginBottom;
+        }
+        .nestedListMarginBottom();
+
+        .nestedListMarginLeft () when not (@nestedListMarginLeft = false) {
+            margin-left: @nestedListMarginLeft;
+        }
+    }
+}
+ul {
+    list-style-type: @listBulletStyle;
+    ul {
+        list-style-type: circle;
+        ul {
+            list-style-type: square;
+        }
+    }
+}
+ol {
+    list-style-type: decimal;
+}
+nav {
+    ol,
+    ul {
+        list-style: none;
+        margin-bottom: 0;
+        li {
+            margin-bottom: 0;
+        }
+    }
+}
+dl {
+    margin-bottom: @dlMarginBottom;
+}
+dt {
+    color: @dtColor;
+    font-size: @dtFontSize;
+    margin-bottom: @dtMarginBottom;
+
+    .dtFontFamily () when not (@dtFont = false) {
+        font-family: @dtFont;
+    }
+    .dtFontFamily();
+}
+dd {
+    color: @ddColor;
+    margin-bottom: @ddMarginBottom;
+
+    .ddFontFamily () when not (@ddFont = false) {
+        font-family: @ddFont;
+    }
+    .ddFontFamily();
+
+    .ddFontSize () when not (@ddFontSize = false) {
+        font-size: @ddFontSize;
+    }
+    .ddFontSize();
+}
