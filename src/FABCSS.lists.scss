@@ -1,0 +1,128 @@
+/*----------------------------------------------------------------------------*\
+    # Copyright 2017, BuzzingPixel, LLC
+
+    # This program is free software: you can redistribute it and/or modify
+    # it under the terms of the Apache License 2.0.
+    # http://www.apache.org/licenses/LICENSE-2.0
+\*----------------------------------------------------------------------------*/
+
+
+/**
+ * Variables
+ */
+$listBulletPosition: outside !default; // inside or outside
+$listColor: false !default;
+$listLineHeight: false !default;
+$listMarginBottom: false !default;
+$listMarginLeft: 20px !default; // false to disable
+$liMarginBottom: 2px !default; // false to disable
+$nestedListMarginBottom: 20px !default;
+$nestedListMarginLeft: 20px !default;
+$listBulletStyle: disc !default; // disc, circle, square, etc
+
+$dlMarginBottom: 20px !default;
+$dtColor: lighten(#000, 35%) !default;
+$dtFont: false !default;
+$dtFontSize: 20px !default;
+$dtMarginBottom: 2px !default;
+$ddColor: lighten(#000, 65%) !default;
+$ddFont: false !default;
+$ddFontSize: false !default;
+$ddMarginBottom: 10px !default;
+
+
+// List styling
+dl,
+ol,
+ul {
+    list-style-position: $listBulletPosition;
+
+    @if $listColor != false {
+        color: $listColor;
+    }
+
+    @if $listLineHeight != false {
+        line-height: $listLineHeight;
+    }
+
+    @if $listMarginBottom != false {
+        margin-bottom: $listMarginBottom;
+    }
+
+    @if $liMarginBottom != false {
+        li {
+            margin-bottom: $liMarginBottom;
+        }
+    }
+}
+
+ol,
+ul {
+    @if $listMarginLeft != false {
+        margin-left: $listMarginLeft;
+    }
+
+    ol,
+    ul {
+        @if $nestedListMarginBottom != false {
+            margin-bottom: $nestedListMarginBottom;
+        }
+
+        @if $nestedListMarginLeft != false {
+            margin-left: $nestedListMarginLeft;
+        }
+    }
+}
+
+ul {
+    list-style-type: $listBulletStyle;
+    ul {
+        list-style-type: circle;
+        ul {
+            list-style-type: square;
+        }
+    }
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+nav {
+    ol,
+    ul {
+        list-style: none;
+        margin-bottom: 0;
+
+        li {
+            margin-bottom: 0;
+        }
+    }
+}
+
+dl {
+    margin-bottom: $dlMarginBottom;
+}
+
+dt {
+    color: $dtColor;
+    font-size: $dtFontSize;
+    margin-bottom: $dtMarginBottom;
+
+    @if $dtFont != false {
+        font-family: $dtFont;
+    }
+}
+
+dd {
+    color: $ddColor;
+    margin-bottom: $ddMarginBottom;
+
+    @if $ddFont != false {
+        font-family: $ddFont;
+    }
+
+    @if $ddFontSize != false {
+        font-size: $ddFontSize;
+    }
+}
